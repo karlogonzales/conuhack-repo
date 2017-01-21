@@ -1,0 +1,36 @@
+{
+  "name": "travelapp",
+  "version": "1.0.0",
+  "description": "Travel app developed at Conuhack",
+  "main": "server.js",
+  "keywords": [
+    "Node.js",
+    "application"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karlogonzales/conuhack-repo.git"
+  },
+  "author": "JKMT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karlogonzales/conuhack-repo/issues"
+  },
+  "dependencies": {
+    "express": "4.13.3",
+    "multer": "1.1.0"
+  },
+  "devDependencies": {
+    "should": "~7.1.0",
+    "mocha": "~2.3.3",
+    "supertest": "~1.1.0"
+  },
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  }
+}
