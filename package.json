@@ -21,6 +21,7 @@
     "url": "https://github.com/karlogonzales/conuhack-repo/issues"
   },
   "dependencies": {
+    "clarifai": ">1.0.0",
     "express": "4.13.3",
     "multer": "1.1.0"
   },
