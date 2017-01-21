@@ -1,9 +1,12 @@
-File-upload-in-Node
-===================
+conuhack-repo
+=============
 
-Download code and type 
-```node Server.js``` 
-Visit ```localhost:3000``` to view the app.
+Conuhack 2017
 
-```Tutorial link``` : http://wp.me/p4ISPV-cq
+	To run the server do: 
 
+	$ npm install
+	$ npm start 
+
+	The server will run on port 3000
+	
