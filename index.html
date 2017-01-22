@@ -18,39 +18,37 @@
   </body>
   <button id= "audioButton" onclick="speak()">TTS</button>
   <script>
-  function speak(){
-        VoiceRSS.speech({
-            key: 'b49727a235b54b15a7b22955f9fbd2d6',
-            src: 'Hello, world!',
-            hl: 'en-us',
-            r: 0, 
-            c: 'mp3',
-            f: '44khz_16bit_stereo',
-            ssml: false
-        });
+    function speak(){
+        if(getElementById("status").innerHTML == null)
+          alert("Please upload an image first");
+        else
+          VoiceRSS.speech({
+              key: 'b49727a235b54b15a7b22955f9fbd2d6',
+              src: getElementById('status').innerHTML,
+              hl: 'en-us',
+              r: 0, 
+              c: 'mp3',
+              f: '44khz_16bit_stereo',
+              ssml: false
+          });
       }; 
   $(document).ready(function() {
-
      $('#uploadForm').submit(function() {
-		 $("#title").empty().text("Nothing is found yet...");
+     $("#title").empty().text("Nothing is found yet...");
      $("#status").empty().text("File is uploading...");
-
         $(this).ajaxSubmit({
-
             error: function(xhr) {
-		            status('Error: ' + xhr.status);
+                status('Error: ' + xhr.status);
             },
-
             success: function(response) {
-					      //console.log(response)
-					      var jsonresp = JSON.parse(response);
+                //console.log(response)
+                var jsonresp = JSON.parse(response);
                 //console.log(jsonresp)
                 $("#title").empty().text(jsonresp.place);
                 $("#status").empty().text(jsonresp.description);
             }
-	});
-
-	return false;
+  });
+  return false;
     });    
 });
   </script>
