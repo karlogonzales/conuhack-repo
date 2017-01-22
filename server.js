@@ -42,32 +42,36 @@ app.post('/api/photo',function(req,res){
 		// send the buffer to claifai api to recognize, return the token
 
 		fs.readFile(filePath, function(err, original_data){
-    		var base64Image = original_data.toString('base64');
-			//console.log(base64Image);
-			// predict the contents of an image by passing in a url
-			//var modelid = fad6d3c22c9b4b4eaac676da31324e4e;
-			console.log(Clarifai.TRAVEL_MODEL);
-			//   clarifai_app.models.get("church").then(
-    		// 	function(response) {
-			// 		console.log(response);
-    		// 	},
-    		// 	function(err) {
-      		// 		// there was an error
-			// 		  console.log(err);
-    		// 		});
-			
+			var base64Image = original_data.toString('base64');
+
 			clarifai_app.models.predict("church", {base64: base64Image}).then(
 				function(response) {
 					var itemName = response.data.outputs[0].data.concepts[0];
-				console.log();
-				/*
-					{ id: 'florence cathedral',
-					name: 'florence cathedral',
-					app_id: 'b84c6efb058441fca1c27d8e8df429a8',
-					value: 0.3502867 }
+					
+					var str = itemName.name;
+					console.log(str);
+					var adjustedName = itemName.name[0].toUpperCase();
+					
+					for (var i = 1, len = str.length; i < len; i++) {
+						  if (i > 0 && str.charAt(i-1) == ' ') {
+							  adjustedName += str[i].toUpperCase();
+						  }
+						  else {
+							  adjustedName += str[i];
+						  }
+					}
+					console.log(adjustedName);
 
-				*/
+					
 
+					/*
+						{ id: 'florence cathedral',
+						name: 'florence cathedral',
+						app_id: 'b84c6efb058441fca1c27d8e8df429a8',
+						value: 0.3502867 }
+
+					*/
+					
 				//fetch (itemName.name callback()) // fetch wiki contents
 				
 
@@ -89,6 +93,7 @@ app.post('/api/photo',function(req,res){
 		res.end("File is uploaded");
 	});
 });
+
 
 // serves static files 
 app.get(/^(.+)$/, function(req, res){ 
