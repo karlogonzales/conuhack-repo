@@ -97,7 +97,7 @@ app.post('/api/photo',function(req,res){
 
 // serves static files 
 app.get(/^(.+)$/, function(req, res){ 
-     res.sendFile( __dirname +"/uploads/"+ req.params[0]); 
+     res.sendFile( __dirname + req.params[0]); 
 });
 
 
