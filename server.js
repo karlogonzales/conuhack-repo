@@ -1,6 +1,7 @@
 var express	=	require("express");
 var multer	=	require('multer');
 var fs = require('fs');
+var http = require('https');
 
 var app	=	express();
 
@@ -53,7 +54,7 @@ app.post('/api/photo',function(req,res){
 					var adjustedName = itemName.name[0].toUpperCase();
 					
 					for (var i = 1, len = str.length; i < len; i++) {
-						  if (i > 0 && str.charAt(i-1) == ' ') {
+						  if (i > 0 && str.charAt(i-1) == ' ' && i > 0 && str.charAt(i-1) != 'a' && str.charAt(i) != 'l') {
 							  adjustedName += str[i].toUpperCase();
 						  }
 						  else {
@@ -62,36 +63,70 @@ app.post('/api/photo',function(req,res){
 					}
 					console.log(adjustedName);
 
+					var titleParts = adjustedName.split(" ");
+					var titleParam = "";
+					titleParts.map(function(x) {
+						titleParam += x + "+";
+					})
+					titleParam.slice(0, -1);
+
+					var wiki_url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + titleParam;
 					
+					http.get(wiki_url, function(response) {
+						// Continuously update stream with data
+						var body = '';
+						response.on('data', function(d) {
+							body += d;
+						});
+						
+						response.on('end', function() {
 
-					/*
-						{ id: 'florence cathedral',
-						name: 'florence cathedral',
-						app_id: 'b84c6efb058441fca1c27d8e8df429a8',
-						value: 0.3502867 }
+							// Data reception is done, do whatever with it!
+							var parsed = body.split("\"extract\":\"");
+							//console.log(parsed[1]);
+							var final_text = parsed[1].slice(0, -5);
 
-					*/
-					
-				//fetch (itemName.name callback()) // fetch wiki contents
-				
-
-
-			},
+							var final_result = {};
+							final_result["place"] = adjustedName;
+							final_result["description"] = final_text;
+							// delete the file from the middleware
+							fs.unlinkSync(filePath);
+							res.end(JSON.stringify(final_result));
+						});
+					});
+				},
+			// predict function error 
 			function(err) {
 				console.error(err);
 			});	
-    
+			
 		});
-
-
 		
-		
-		
-		// delete the file from the middleware
-		//fs.unlinkSync(filePath);
-		
-		res.end("File is uploaded");
 	});
+
+	// function fetchWikiInfo (url, callback) {
+				
+	// 	console.log("enter here");			
+	// 	https.get(url, function(response){
+						
+	// 		response.on("extract", function (chunk) {
+	// 			data += chunk.toString();
+	// 		});
+						
+	// 		response.on('end', function() {
+	// 			try {
+	// 				var parsedData = JSON.parse(data);
+	// 				console.log(parsedData);
+	// 				callback(parsedData);
+	// 			} catch (e) {
+	// 				callback("No Wiki information available");
+	// 			}
+	// 		});
+
+	// 	});
+	// }
+
+
 });
 
 
