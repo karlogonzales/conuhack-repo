@@ -94,6 +94,7 @@
 <!--Mask-->
 <div class="view hm-black-strong">
     <div class="full-bg-img flex-center">
+            
             <form id="uploadForm" enctype="multipart/form-data" action="/api/photo" method="post">
             <ul>            
                 <li>
@@ -106,49 +107,51 @@
             <ul>
                 <li>
                     <div class="fileupload fileupload-new" data-provides="fileupload">
-                        <span class="btn btn-primary btn-file"><span class="fileupload-new">Select file</span>
+                        <span class="btn btn-primary btn-file">
+                        <span class="fileupload-new">Select file</span>
                         <span class="fileupload-exists">Change</span>         
-                            <input type="file" name="userPhoto" />
+                        <span> <input type="file" name="userPhoto" />
                         </span>
                         <span class="fileupload-preview"></span>
 
                     </div>
-                     <input class="waves-effect waves-light btn" style="background-color: #00E676" id="submitButtoncd" type="submit" value="Upload" name="submit">
+                     <input class="waves-effect waves-light btn" style="background-color: #00E676" id="submitButtoncd" type="submit" value="Upload" name="submit" />
                 </li>
-                    <BR></BR>
-                    <BR></BR>
-                    <BR></BR>
-                    <BR></BR>
+                
+                <BR></BR>
+                <BR></BR>
+                <BR></BR>
+                <BR></BR>
+
                 <li>
                     
 
-                    <div class="flex-center">
+                     <div class="flex-center">
 
                             <a href="http://www.example.com">
                             <img class="wow fadeInUp" src="http://www.orthodoxasten.nl/images/speaker.png" class=""
                             style="width:90px;height:90px;"></a>
                             
+
                     </div>
-
                 </li>
-
-
+                
+                           
+                    <li>
+                        <h1 id = "title" style="color: white;" class="h1-responsive wow fadeInDown" data-wow-delay="0.2s" >Nothing uploaded</h1>
+                    </li>
+                    <li>
+                        <p class="wow fadeInDown" id = "status">No content to display</p>
+                    </li>
+            
                 
 
             </ul>
-            </form>
-            
-         <ul>            
-                <li>
-                    <h1 id = "title" class="h1-responsive wow fadeInDown" data-wow-delay="0.2s" >Welcome to the Traveler</h1>
-                </li>
-                <li>
-                    <p class="wow fadeInDown" id = "status"></p>
-                </li>
-        </ul>   
-            
-
+            </form>            
+           
     </div>
+
+            
 </div>
 
 

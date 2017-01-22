@@ -11,9 +11,6 @@ var clarifai_app = new Clarifai.App(
     '5QxnJDzgJlNlp0DgTP68oVaZ1SGRkipN9AT4OKjV'
   );
 
-
-
-
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './uploads');
