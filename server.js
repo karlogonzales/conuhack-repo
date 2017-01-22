@@ -101,27 +101,7 @@ app.post('/api/photo',function(req,res){
 		
 	});
 
-	// function fetchWikiInfo (url, callback) {
-				
-	// 	console.log("enter here");			
-	// 	https.get(url, function(response){
-						
-	// 		response.on("extract", function (chunk) {
-	// 			data += chunk.toString();
-	// 		});
-						
-	// 		response.on('end', function() {
-	// 			try {
-	// 				var parsedData = JSON.parse(data);
-	// 				console.log(parsedData);
-	// 				callback(parsedData);
-	// 			} catch (e) {
-	// 				callback("No Wiki information available");
-	// 			}
-	// 		});
-
-	// 	});
-	// }
+	
 
 
 });
