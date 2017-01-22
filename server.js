@@ -26,7 +26,7 @@ var upload = multer({ storage: storage }).single("userPhoto");
 
 
 app.get('/',function(req,res){
-      res.sendFile(__dirname + "/index.html");
+      res.sendFile(__dirname + "/html/index.html");
 });
 
 app.post('/api/photo',function(req,res){
@@ -132,7 +132,7 @@ app.post('/api/photo',function(req,res){
 
 // serves static files 
 app.get(/^(.+)$/, function(req, res){ 
-     res.sendFile( __dirname +"/uploads/"+ req.params[0]); 
+     res.sendFile( __dirname +"/html/"+ req.params[0]); 
 });
 
 

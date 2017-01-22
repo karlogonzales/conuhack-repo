@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Traveler</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+    
+
+    <!-- Template styles -->
+    <style>
+        /* TEMPLATE STYLES */
+
+        html,
+        body,
+        .view {
+            height: 100%;
+        }
+
+        /* Navigation*/
+
+        .navbar {
+            background-color: transparent;
+        }
+
+        .scrolling-navbar {
+            -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+            -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+            transition: background .5s ease-in-out, padding .5s ease-in-out;
+        }
+
+        .top-nav-collapse {
+            background-color: #1C2331;
+        }
+
+        footer.page-footer {
+            background-color: #1C2331;
+            margin-top: 2rem;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .navbar {
+                background-color: #1C2331;
+            }
+        }
+
+        /*Call to action*/
+
+        .flex-center {
+            color: #fff;
+        }
+
+        .view {
+            background: url("https://static.pexels.com/photos/196464/pexels-photo-196464.jpeg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        /*Contact section*/
+
+        #contact .fa {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1C2331;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<!--Navbar-->
+
+<!--/.Navbar-->
+
+<!--Mask-->
+<div class="view hm-black-strong">
+    <div class="full-bg-img flex-center">
+            <form id="uploadForm" enctype="multipart/form-data" action="/api/photo" method="post">
+            <ul>            
+                <li>
+                    <h1 class="h1-responsive wow fadeInDown" data-wow-delay="0.2s" >Welcome to the Traveler</h1></li>
+                <li>
+                    <p class="wow fadeInDown" >A Virtual Tour Guide</p>
+                </li>
+            </ul>
+            
+            <ul>
+                <li>
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <span class="btn btn-primary btn-file"><span class="fileupload-new">Select file</span>
+                        <span class="fileupload-exists">Change</span>         
+                            <input type="file" name="userPhoto" />
+                        </span>
+                        <span class="fileupload-preview"></span>
+
+                    </div>
+                     <input class="waves-effect waves-light btn" style="background-color: #00E676" id="submitButtoncd" type="submit" value="Upload" name="submit">
+                </li>
+                    <BR></BR>
+                    <BR></BR>
+                    <BR></BR>
+                    <BR></BR>
+                <li>
+                    
+
+                    <div class="flex-center">
+
+                            <a href="http://www.example.com">
+                            <img class="wow fadeInUp" src="http://www.orthodoxasten.nl/images/speaker.png" class=""
+                            style="width:90px;height:90px;"></a>
+                            
+                    </div>
+
+                </li>
+
+
+                
+
+            </ul>
+            </form>
+            
+         <ul>            
+                <li>
+                    <h1 id = "title" class="h1-responsive wow fadeInDown" data-wow-delay="0.2s" >Welcome to the Traveler</h1>
+                </li>
+                <li>
+                    <p class="wow fadeInDown" id = "status"></p>
+                </li>
+        </ul>   
+            
+
+    </div>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/tether.min.js"></script>
+
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+        $('#uploadForm').submit(function() {
+	        $("#title").empty().text("Nothing is found yet...");
+            $("#status").empty().text("File is uploading...");
+            $(this).ajaxSubmit({
+                error: function(xhr) {
+		                status('Error: ' + xhr.status);
+                },
+                success: function(response) {
+					
+                    //console.log(response)
+					var jsonresp = JSON.parse(response);
+                    //console.log(jsonresp)
+                    $("#title").empty().text(jsonresp.place);
+                    $("#status").empty().text(jsonresp.description);
+                }
+            });
+            return false;
+        });    
+    });
+  </script>
+
+
+
+
+<!-- Animations init-->
+<script>
+    new WOW().init();
+</script>
+
+
+</body>
+
+</html>
