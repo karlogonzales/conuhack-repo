@@ -3,7 +3,8 @@
     <title>File upload Node.</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
-    <script  src='./html/voicerss-tts.min.js'></script>
+    <script src='./html/voicerss-tts.min.js'></script>
+    <script src='runVoice.js'></script>
   </head>
   <body>
       <form id="uploadForm"
@@ -18,18 +19,12 @@
   </body>
   <button id= "audioButton" onclick="speak()">TTS</button>
   <script>
+    
     function speak(){
-        if(getElementById("status").innerHTML == null)
+        if(document.getElementById("status").innerHTML == null)
           alert("Please upload an image first");
         else
-          VoiceRSS.speech({
-              key: 'b49727a235b54b15a7b22955f9fbd2d6',
-              src: getElementById('status').innerHTML,
-              hl: 'en-us',
-              r: 0, 
-              c: 'mp3',
-              f: '44khz_16bit_stereo',
-              ssml: false
+          var myWorker = new Worker("worker.js");
           });
       }; 
   $(document).ready(function() {
