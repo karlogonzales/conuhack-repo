@@ -78,6 +78,7 @@ app.post('/api/photo',function(req,res){
 						response.on('data', function(d) {
 							body += d;
 						});
+						
 						response.on('end', function() {
 
 							// Data reception is done, do whatever with it!
@@ -93,11 +94,6 @@ app.post('/api/photo',function(req,res){
 							res.end(JSON.stringify(final_result));
 						});
 					});
-					
-						
-						
-					
-			
 				},
 			// predict function error 
 			function(err) {

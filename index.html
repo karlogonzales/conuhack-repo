@@ -10,6 +10,7 @@
       <input type="file" name="userPhoto" />
       <input type="submit" value="Upload Image" name="submit">
     </form>
+    <header id = "title"></header>
     <span id = "status"></span>
   </body>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -18,7 +19,8 @@
   $(document).ready(function() {
 
      $('#uploadForm').submit(function() {
-		 $("#status").empty().text("File is uploading...");
+		 $("#title").empty().text("Nothing is found yet...");
+     $("#status").empty().text("File is uploading...");
 
         $(this).ajaxSubmit({
 
@@ -27,8 +29,11 @@
             },
 
             success: function(response) {
-					console.log(response)
-					$("#status").empty().text(response);
+					      //console.log(response)
+					      var jsonresp = JSON.parse(response);
+                //console.log(jsonresp)
+                $("#title").empty().text(jsonresp.place);
+                $("#status").empty().text(jsonresp.description);
             }
 	});
 
