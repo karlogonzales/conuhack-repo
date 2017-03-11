@@ -9,7 +9,4 @@ Conuhack 2017
 	$ npm start 
 
 	The server will run on port 3000
-
-
-	Just Test by jenny
 	
